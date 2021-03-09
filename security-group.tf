@@ -2,28 +2,34 @@
 #Dynamic Security Group
 #-------------------------------------------
 resource "aws_security_group" "security_group" {
-  name = var.security_group_name
-  self = var.is_self_source
 
-  #parses through list of security rules that are passed into module
-  dynamic "ingress" {
-    for_each = var.ingress_ports
+  dynamic "security-groups" {
+    for_each = var.security_group_list
     content {
-      description = ingress.value.description
-      from_port   = ingress.value.from_port
-      to_port     = ingress.value.to_port
-      protocol    = protocal.value.protocol
-      cidr_blocks = ingress.value.cidr_blocks
-    }
-  }
-  dynamic "egress" {
-    for_each = var.egress_ports
-    content {
-      description = egress.value.description
-      from_port   = egress.value.from_port
-      to_port     = egress.value.to_port
-      protocol    = egress.value.protocol
-      cidr_blocks = egress.value.cidr_blocks
+      name = each.value.name
+      #parses through list of security rules that are passed into module
+      dynamic "ingress" {
+        for_each = var.security_group_list[count.index].ingress_rules
+        content {
+          description = ingress.description
+          from_port   = ingress.from_port
+          to_port     = ingress.to_port
+          protocol    = ingress.protocol
+          cidr_blocks = ingress.cidr_blocks
+          self        = ingress.is_self_source
+        }
+      }
+      dynamic "egress" {
+        for_each = var.security_group_list[count.index].egress_rules
+        content {
+          description = egress.description
+          from_port   = egress.from_port
+          to_port     = egress.to_port
+          protocol    = egress.protocol
+          cidr_blocks = egress.cidr_blocks
+          self        = egress.is_self_source
+        }
+      }
     }
   }
 }
