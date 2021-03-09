@@ -1,23 +1,23 @@
 security_groups:
   test-security-group:
     - ingress_rules:
-      description: "Test description"
-      is_self_source: "false"
-      from_port: 80
-      to_port: 80
-      protocol: "tcp"
-      cidr_blocks: ["0.0.0.0/0"]
+          - description: "Test description"
+          - is_self_source: "false"
+          - from_port: 80
+          - to_port: 80
+          - protocol: "tcp"
+          - cidr_blocks: ["0.0.0.0/0"]
     - ingress_rules:
-      description: "Test description"
-      is_self_source: "false"
-      from_port: 80
-      to_port: 80
-      protocol: "tcp"
-      cidr_blocks: ["0.0.0.0/0"]
+          - description: "Test description 2"
+          - is_self_source: "false"
+          - from_port: 443
+          - to_port: 443
+          - protocol: "tcp"
+          - cidr_blocks: ["0.0.0.0/0"]
     - egress_rules:
-      description: "Test description"
-      is_self_source: "false"
-      from_port: 80
-      to_port: 80
-      protocol: "-1"
-      cidr_blocks: ["0.0.0.0/0"]
+          - description: "Test description 2"
+          - is_self_source: "false"
+          - from_port: 443
+          - to_port: 443
+          - protocol: "tcp"
+          - cidr_blocks: ["0.0.0.0/0"]
