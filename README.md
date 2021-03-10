@@ -6,7 +6,7 @@
 3.  [Providers](#providers)
 4.  [Inputs](#inputs)
 5.  [Outputs](#outputs)
-6.  [Testing](#testing)
+<!-- 6.  [Testing](#testing) -->
 
 ## Usage
 ```terraform
@@ -46,7 +46,7 @@ module "test-security-group" {
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-## Testing
+<!-- ## Testing -->
 
 ### Critical
 
