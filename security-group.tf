@@ -2,29 +2,29 @@
 #Dynamic Security Group
 #-------------------------------------------
 resource "aws_security_group" "security_group" {
-  for_each = var.security_group_list.security_groups
+  for_each = var.security_group_list
 
   name = each.key
   dynamic "ingress" {
-    for_each = each.value
+    for_each = each.value.ingress_rules[*]
     content {
-      description = ingress[ingress_rules].description
-      from_port   = ingress.ingress_rules.from_port
-      to_port     = ingress.ingress_rules.to_port
-      protocol    = ingress.ingress_rules.protocol
-      cidr_blocks = ingress.ingress_rules.cidr_blocks
-      self        = ingress.ingress_rules.is_self_source
+      description = each.value.ingress_rules.description
+      from_port   = each.value.ingress_rules.from_port
+      to_port     = each.value.ingress_rules.to_port
+      protocol    = each.value.ingress_rules.protocol
+      cidr_blocks = each.value.ingress_rules.cidr_blocks
+      self        = each.value.ingress_rules.is_self_source
     }
   }
   dynamic "egress" {
-    for_each = var.security_group_list.security_groups
+    for_each = each.value.egress_rules[*]
     content {
-      description = egress.egress_rules.description
-      from_port   = egress.egress_rules.from_port
-      to_port     = egress.egress_rules.to_port
-      protocol    = egress.egress_rules.protocol
-      cidr_blocks = egress.egress_rules.cidr_blocks
-      self        = egress.egress_rules.is_self_source
+      description = each.value.egress_rules.description
+      from_port   = each.value.egress_rules.from_port
+      to_port     = each.value.egress_rules.to_port
+      protocol    = each.value.egress_rules.protocol
+      cidr_blocks = each.value.egress_rules.cidr_blocks
+      self        = each.value.egress_rules.is_self_source
     }
   }
 }
