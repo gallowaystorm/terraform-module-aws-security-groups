@@ -5,6 +5,7 @@ resource "aws_security_group" "security_group" {
   for_each = var.security_group_list
 
   name = each.key
+  description = each.
   dynamic "ingress" {
     for_each = each.value.ingress_rules[*]
     content {
