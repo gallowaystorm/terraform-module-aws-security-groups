@@ -1,4 +1,6 @@
 test-security-group:
+  group_description: "Group Description One"
+  vpc_id: "vpc-7af8331c"
   ingress_rules:
     - description: "Test description"
       is_self_source: "false"
@@ -26,6 +28,8 @@ test-security-group:
       protocol: "tcp"
       cidr_blocks: ["0.0.0.0/0"]
 test-security-group-02:
+  group_description: "Group Description Two"
+  vpc_id: "vpc-7af8331c"
   ingress_rules:
     - description: "Test description"
       is_self_source: "true"
