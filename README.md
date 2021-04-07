@@ -36,7 +36,6 @@ module "test-security-group" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | security\_group\_list| This is the list of security groups in YAML format that needs to be decoded with yamldecode (\see example below\) | `decoded YAML` | N/A | yes |
-| region | The AWS region that this module will be deployed to. | `string` | `us-east-1` | no |
 
 ## Outputs
 
